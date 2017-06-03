@@ -1,0 +1,31 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bentley912/Article-Scraper.git"
+  },
+  "keywords": [
+    "package"
+  ],
+  "author": "PBentley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bentley912/Article-Scraper/issues"
+  },
+  "homepage": "https://github.com/Bentley912/Article-Scraper#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.1",
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.10.4",
+    "request": "^2.81.0"
+  }
+}
