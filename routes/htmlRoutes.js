@@ -12,7 +12,7 @@ router.get("/saved", function(req,res){
   res.send("Saved Articles Page");  
 });
 
-router.get("/api/scrape", function(req,res){
+router.post("/api/scrape", function(req,res){
     var result = [];
  
     request("https://www.reddit.com/", function(error, response, html) {
@@ -32,15 +32,14 @@ router.get("/api/scrape", function(req,res){
             link: link
             });
         });
-        // After the program scans each h4.headline-link, log the result
-        
+        // After the program scans each h4.headline-link, log the result  
         console.log(result);
-        return result;
-        });
-
-    res.json(result);
+        res.json(result);      
+    });
+    
 })
-
+//TODO: fix scrape to populate json page
+//TODO: Route for Creating 
 
 
 module.exports = router; 
