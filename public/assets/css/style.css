@@ -2,4 +2,16 @@
     background-color:red;
     padding:8em;
     margin-bottom:5em;
+    background:
+  url('http://allbanglanewspaper.net/template//slider/images/2.jpg');
+  background-size:cover;
+  text-align: center;
+  background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.panel-title{
+    font-size:30px;
 }
