@@ -98,18 +98,39 @@ router.get("/articles", function(req, res) {
   });
 });
 
-app.get("/articles/:id", function(req, res) {
+router.get("/articles/:id", function(req, res) {
+    Article.findOne({"_id":req.params.id})
+    .populate('note')
+    .exec(function(err,doc){
+        if (err){
+            res.send(err)
+        }
+        else{
+            res.send(doc)
+        }
+    })
+});
+router.post("/articles/:id", function(req, res) {
 
-Article.findOne({"_id":req.params.id})
-.populate('note')
-.exec(function(err,doc){
-  if (err){
-    res.send(err)
-  }
-  else{
-    res.send(doc)
-  }
+var newNote = new Note(req.body.note);
+
+    newNote.save(function(err,data){
+        if (err){
+            console.log(err);
+        }
+        else{
+            console.log(data);
+            Article.update({"_id": req.params.id}, {$set: {note:data.id} }, {new:true})
+            .exec(function(err,data){
+            if (err){
+                res.send(err)
+            }
+            else{
+                res.send(data)
+            }
+            });
+        }
+    })
 })
-
 
 module.exports = router; 
