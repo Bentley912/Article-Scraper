@@ -17,21 +17,40 @@ function scrapeQuery(){
           console.log(response);
           for (var i =0; i <response.length; i++){
               //loop through results and add panels for each response 
-              console.log("Div!!");
+              var well = $("<div>");
+              var form = $("<form>");
               var panel = $("<div>");
               var heading = $("<div>")
               var headingText = $("<h3>");
               var button = $("<button>");
+              var input1 = $("<input>");
+              var input2 = $("<input>");
+              well.addClass("well well-lg");
               panel.addClass("panel panel-primary");
               heading.addClass("panel-heading");
               headingText.addClass("panel-title");
-              button.addClass("btn btn-danger pull-right")
+              form.attr({
+                            action:"/saved", 
+                            method: "POST",
+                            name: "article"
+                        });
+              input1.attr({
+                type:"hidden",
+                name: "title",
+                value:response[i].title
+              });
+              button.addClass("btn btn-sm btn-success pull-right")
+              button.attr("type", "submit");
               button.html("Save Article");
               headingText.html(response[i].title);
               heading.append(headingText);
-              panel.append(button);
+              heading.append(button);
+              form.append(input1);
+              form.append(button);
+              panel.append(form);
               panel.append(heading);
-              $("#panelSection").append(panel);
+              well.append(panel);
+              $("#panelSection").append(well);
           }
     })
 };

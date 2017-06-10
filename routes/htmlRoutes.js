@@ -3,6 +3,8 @@ var router = express.Router();
 var request = require("request");
 var cheerio = require("cheerio");
 var result = require("../server.js");
+var Note = require("../models/Note.js");
+var Article = require("../models/Article.js");
 
 router.get("/", function(req,res){   
   res.render('index');  
@@ -31,7 +33,6 @@ router.post("/api/scrape", function(req,res){
             title: title,
             link: link
         });
-        console.log(result);
         });
         // After the program scans each h4.headline-link, log the result  
         // console.log(result);
@@ -66,8 +67,37 @@ router.get("/api/scrape", function(req,res){
     });
     
 })
-//TODO: fix scrape to populate json page
-//TODO: Route for Creating 
+
+
+router.post("/saved", function(req,res){
+    var entry = new Article(
+        {
+            title:req.body.title
+        });
+    entry.save(function(err, doc) {
+        // Log any errors
+        if (err) {
+          console.log(err);
+        }
+        // Or log the doc
+        else {
+          console.log(doc);
+        }
+      });
+      res.render('index');
+});
+
+router.get("/articles", function(req, res) {
+  Article.find({}, function(error,doc){
+    if (error){
+      res.send(error)
+    }
+    else{
+      res.render("saved", { contents: doc}) 
+    }
+  });
+
+});
 
 
 module.exports = router; 
