@@ -96,8 +96,20 @@ router.get("/articles", function(req, res) {
       res.render("saved", { contents: doc}) 
     }
   });
-
 });
+
+app.get("/articles/:id", function(req, res) {
+
+Article.findOne({"_id":req.params.id})
+.populate('note')
+.exec(function(err,doc){
+  if (err){
+    res.send(err)
+  }
+  else{
+    res.send(doc)
+  }
+})
 
 
 module.exports = router; 
