@@ -58,9 +58,10 @@ function scrapeQuery(){
 var articleId; //variable for article id 
 $(document).on('click', '#articlePanel', function(){
     articleId = $(this).attr('data-id');//article id for each saved article for note
-    //console.log(articleId);
+    console.log(articleId);
 })
 
+//Posting note data to mnote creation route
 $('#addNote').on('click', function(){
     data ={
         title: $('#noteTitle').val(),
@@ -83,8 +84,20 @@ $('#addNote').on('click', function(){
         console.log(data);
         // Empty the notes section
     });
-
 })
+
+$('.getNotes').on('click', function(){
+    $.ajax({
+        method: "GET",
+        url: "/articles/" + articleId
+    }).done(function(data){
+        console.log(data.note.title);
+    }).catch(function(err){
+        console.log(err)
+    })
+})
+
+
 
 
 

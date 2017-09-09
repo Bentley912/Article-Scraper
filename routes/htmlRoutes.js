@@ -13,7 +13,7 @@ router.get("/", function(req,res){
 router.get("/saved", function(req,res){   
   res.send("Saved Articles Page");  
 });
-
+// Route for scraping data from Reddit
 router.post("/api/scrape", function(req,res){
     var result = [];
  
@@ -68,7 +68,7 @@ router.get("/api/scrape", function(req,res){
     
 })
 
-
+//Route for saving an article 
 router.post("/saved", function(req,res){
     var entry = new Article(
         {
@@ -86,7 +86,7 @@ router.post("/saved", function(req,res){
       });
       res.render('index');
 });
-
+//Route for finding saved articles
 router.get("/articles", function(req, res) {
   Article.find({}, function(error,doc){
     if (error){
