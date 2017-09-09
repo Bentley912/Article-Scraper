@@ -5,39 +5,43 @@
     </div>
 
 {{#each contents}}
-  <div class="panel panel-success">
+<div class="panel panel-success" data-id={{this.id}} id ="articlePanel">
   <div class="panel-heading">
     <h3 class="panel-title">{{this.title}}</h3>
-  
   </div>
   <div class="panel-body">
-    Panel content
+    
        <form class="pull-right" action="/note" method="POST">
             <button type="submit" class="btn btn-md btn-danger">Delete From Saved</button>
-    </form>
+      </form>
     
-            <buttontype="submit" class="btn btn-md btn-info pull-right" data-toggle="modal" data-target="#noteeModal">Make a Note </button>
+            <button type="submit" class="btn btn-md btn-info pull-right" id= "noteButton" data-toggle="modal" data-target="#noteModal">Make a Note </button>
   </div>
 </div>
 {{/each}}
 
-<div class="modal" id="noteeModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="noteModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Article Notes</h5>
+        <h1 class="modal-title" id="exampleModalLabel">Note </h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Note Title" aria-describedby="basic-addon1" id="noteTitle">
+        </div>
+        <div class="form-group">
+          <label for="comment">Body:</label>
+          <textarea class="form-control" rows="5" id="noteBody"></textarea>
+        </div>
       </div>
       <div class="modal-footer">
-          <form action="/articles/{{this.id}}" method="POST">
-              <input type="textarea" name ="note" rows="5"> 
-         <button type="button" class="btn btn-success" data-dismiss="modal">Save Note</button>
-        </form>
+          
+         <button type="button" class="btn btn-success" data-dismiss="modal" id="addNote">Save Note</button>
+        
       </div>
     </div>
   </div>

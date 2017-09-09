@@ -94,6 +94,7 @@ router.get("/articles", function(req, res) {
     }
     else{
       res.render("saved", { contents: doc}) 
+      console
     }
   });
 });
@@ -111,16 +112,15 @@ router.get("/articles/:id", function(req, res) {
     })
 });
 router.post("/articles/:id", function(req, res) {
-
-var newNote = new Note(req.body.note);
+//need to find on with "_id: req.params.id"
+var newNote = new Note(req.body);
 
     newNote.save(function(err,data){
         if (err){
             console.log(err);
         }
         else{
-            console.log(data);
-            Article.update({"_id": req.params.id}, {$set: {note:data.id} }, {new:true})
+            Article.update({"_id": req.body.id}, {$set: {note:data.id} }, {new:true})
             .exec(function(err,data){
             if (err){
                 res.send(err)

@@ -55,5 +55,37 @@ function scrapeQuery(){
     })
 };
 
+var articleId; //variable for article id 
+$(document).on('click', '#articlePanel', function(){
+    articleId = $(this).attr('data-id');//article id for each saved article for note
+    //console.log(articleId);
+})
+
+$('#addNote').on('click', function(){
+    data ={
+        title: $('#noteTitle').val(),
+        body: $('#noteBody').val()
+    }
+    $.ajax({
+        method: "POST",
+        url: "/articles/" + articleId,
+        data: {
+            id: articleId,
+            // Value taken from title input
+            title: data.title,
+            // Value taken from note textarea
+            body: data.body
+        }
+    })
+    // With that done
+    .done(function (data) {
+        // Log the response
+        console.log(data);
+        // Empty the notes section
+    });
+
+})
+
+
 
 
