@@ -58,7 +58,7 @@ function scrapeQuery(){
 var articleId; //variable for article id 
 $(document).on('click', '#articlePanel', function(){
     articleId = $(this).attr('data-id');//article id for each saved article for note
-    console.log(articleId);
+    //console.log(articleId);
 })
 
 //Posting note data to mnote creation route
@@ -82,7 +82,7 @@ $('#addNote').on('click', function(){
     .done(function (data) {
         // Log the response
         console.log(data);
-        // Empty the notes section
+    
     });
 })
 
@@ -91,6 +91,11 @@ $('.getNotes').on('click', function(){
         method: "GET",
         url: "/articles/" + articleId
     }).done(function(data){
+        //CHECK TO SEE IF NOTE EXISTS ON THE ARTICLE
+        //IF NOTE DOESNT EXIST, LET THE USER KNOW
+        if (typeof data.note === "undefined"){
+            console.log('the property is not available...'); // print into console
+        }
         console.log(data.note.title);
     }).catch(function(err){
         console.log(err)
