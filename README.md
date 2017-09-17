@@ -4,7 +4,7 @@ This app uses Cheerio web scraper to scrape articles from Reddit. It also allows
 
 This app uses MongoDB, Node, Express and Handlebars
 
-#Node Modules 
+# Node Modules 
 * [body-parser](https://github.com/expressjs/body-parser) - for parsing responses 
 * [cheerio](https://github.com/cheeriojs/cheerio) - for web scraping
 * [express](https://github.com/expressjs/express) - server creation
