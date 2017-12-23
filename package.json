@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "cypress:open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,8 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "cypress": "^1.4.0",
     "mocha": "^3.5.3",
     "supertest": "^3.0.0"
   }
-} 
+}
