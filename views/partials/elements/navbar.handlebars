@@ -1,4 +1,4 @@
-
+<!---
  <nav class="navbar navbar-expand-xl navbar-light bg-dark">
   <a class="navbar-brand" href="#">Mongo Scraper</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,3 +22,23 @@
     </ul>
   </div>
 </nav>
+-->
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Article Scraper</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/articles">Saved</a>
+        <li>
+          <form class="navbar-form navbar-left scrape" action="/api/scrape" method="POST">
+            <input type="hidden" value="">
+            <button type="submit" class="btn btn-md btn-danger modal-trigger pulse"  href="#modal" id = "scrapeButton">Scrape New Artcles</button>
+        </form> 
+      </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+          

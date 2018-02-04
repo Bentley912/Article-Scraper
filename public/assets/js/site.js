@@ -3,9 +3,7 @@ $(".scrape").on("click", function(event) {
       scrapeQuery();
       //hides original panel-warning div 
       $("#noneDiv").hide();
-
 })
-
 
 function scrapeQuery(){
     //grab data from api/scrape   
@@ -13,8 +11,8 @@ function scrapeQuery(){
     $.ajax({ url: queryURL, method: "GET" })
         // After data comes back from the request
         .done(function(response) {
-          console.log(queryURL);
-          console.log(response);
+        //   console.log(queryURL);
+        //   console.log(response);
           for (var i =0; i <response.length; i++){
               //loop through results and add panels for each response 
               var well = $("<div>");
@@ -25,7 +23,7 @@ function scrapeQuery(){
               var button = $("<button>");
               var input1 = $("<input>");
               var input2 = $("<input>");
-              well.addClass("well well-lg");
+              well.addClass("card  red lighten-3");
               panel.addClass("panel panel-primary");
               heading.addClass("panel-heading");
               headingText.addClass("panel-title");
@@ -41,9 +39,10 @@ function scrapeQuery(){
               });
               button.addClass("btn btn-sm btn-success pull-right")
               button.attr("type", "submit");
+              //ADD PREVENT DEFAULT FOR BUTTON CLICK 
               button.html("Save Article");
-              headingText.html(response[i].title);
-              heading.append(headingText);
+              console.log(headingText);
+              heading.append( '<strong>TITLE: </strong>' + response[i].title);
               heading.append(button);
               form.append(input1);
               form.append(button);
@@ -61,7 +60,7 @@ $(document).on('click', '#articlePanel', function(){
     //console.log(articleId);
 })
 
-//Posting note data to mnote creation route
+//Posting note data to note creation route
 $('#addNote').on('click', function(){
     data ={
         title: $('#noteTitle').val(),

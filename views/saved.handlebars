@@ -4,7 +4,7 @@
         <h3>New York Times Edition</h3>
     </div>
 
-{{#each contents}}
+{{!-- {{#each contents}}
 <div class="panel panel-success" data-id={{this.id}} id ="articlePanel">
   <div class="panel-heading">
     <h3 class="panel-title">{{this.title}}</h3>
@@ -17,7 +17,24 @@
             <button type="button" class="btn btn-md btn-info pull-left getNotes" >See Notes </button>
   </div>
 </div>
-{{/each}}
+{{/each}} --}}
+
+{{#each contents}}
+  <div class="col s12 m7" data-id ={{this.id}} id="articlePanel">
+    <h2 class="header">Saved Article</h2>
+    <div class="card horizontal red lighten-3">
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>{{this.title}}</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{/each}}
 
 <div class="modal" id="noteModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
