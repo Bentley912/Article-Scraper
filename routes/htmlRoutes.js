@@ -43,7 +43,6 @@ router.post("/api/scrape", function(req,res){
 
 router.get("/api/scrape", function(req,res){
     var result = [];
- 
     request("https://www.reddit.com/", function(error, response, html) {
     // Load the body of the HTML into cheerio
         var $ = cheerio.load(html);
@@ -64,8 +63,7 @@ router.get("/api/scrape", function(req,res){
         // After the program scans each h4.headline-link, log the result  
         // console.log(result);
         res.json(result);      
-    });
-    
+    });   
 })
 
 //Route for saving an article 
@@ -86,6 +84,7 @@ router.post("/saved", function(req,res){
       });
       res.render('index');
 });
+
 //Route for finding saved articles
 router.get("/articles", function(req, res) {
   Article.find({}, function(error,doc){
@@ -99,7 +98,18 @@ router.get("/articles", function(req, res) {
   });
 });
 
-router.get("/articles/:id", function(req, res) {
+router.delete("/articles/:id", function(req,res){
+    Article.remove({"_id": req.params.id})
+    .exec (function(err, doc){
+        if (err){
+            console.log(err)
+            res.send(err)
+        } 
+        res.send(doc)
+        })
+})
+
+router.get('/articles/:id', function(req, res) {
     Article.findOne({"_id":req.params.id})
     .populate('note')
     .exec(function(err,doc){

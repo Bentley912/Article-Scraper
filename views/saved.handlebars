@@ -18,24 +18,25 @@
   </div>
 </div>
 {{/each}} --}}
-
-{{#each contents}}
-  <div class="col s12 m7" data-id ={{this.id}} id="articlePanel">
-    <h2 class="header">Saved Article</h2>
-    <div class="card horizontal red lighten-3">
-      <div class="card-stacked">
-        <div class="card-content">
-          <p>{{this.title}}</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
+<div class="row">
+  {{#each contents}}
+    <div class="col s12 m3 l4" data-id ={{this.id}} id="articlePanel">
+      {{!-- <h2 class="header">Saved Article</h2> --}}
+      <div class="card horizontal red lighten-3 hoverable">
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>{{this.title}}</p>
+          </div>
+          <div class="card-action" data-id = {{this.id}}>
+              <a class="btn-floating btn-large waves-effect waves-light red pulse"><i class="material-icons">add</i></a>
+            <a class="waves-effect waves-light btn">See Notes</a>
+            <a class="waves-effect waves-light btn deleteButton">Delete Article</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
   {{/each}}
-
+</div>
 <div class="modal" id="noteModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

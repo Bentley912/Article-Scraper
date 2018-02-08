@@ -1,3 +1,9 @@
+$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+
+
 $(".scrape").on("click", function(event) {
       event.preventDefault();
       scrapeQuery();
@@ -16,17 +22,20 @@ function scrapeQuery(){
           for (var i =0; i <response.length; i++){
               //loop through results and add panels for each response 
               var well = $("<div>");
+              var card =$("<div>");
+              var cardStack = $("<div>");
+              var cardContent = $("<div>");
+              var cardAction = $("<div>")
               var form = $("<form>");
               var panel = $("<div>");
-              var heading = $("<div>")
-              var headingText = $("<h3>");
+              var heading = $("<p>")
               var button = $("<button>");
               var input1 = $("<input>");
-              var input2 = $("<input>");
-              well.addClass("card  red lighten-3");
-              panel.addClass("panel panel-primary");
-              heading.addClass("panel-heading");
-              headingText.addClass("panel-title");
+              well.addClass("col s12 m4 l4");
+              card.addClass("card horizontal red lighten-3")
+              cardStack.addClass("card-stacked");
+              cardContent.addClass("card-content");
+              cardAction.addClass("card-action");
               form.attr({
                             action:"/saved", 
                             method: "POST",
@@ -37,18 +46,23 @@ function scrapeQuery(){
                 name: "title",
                 value:response[i].title
               });
-              button.addClass("btn btn-sm btn-success pull-right")
+              button.addClass("btn btn-large waves-effect waves-light")
               button.attr("type", "submit");
               //ADD PREVENT DEFAULT FOR BUTTON CLICK 
               button.html("Save Article");
-              console.log(headingText);
+            //   console.log(headingText);
               heading.append( '<strong>TITLE: </strong>' + response[i].title);
               heading.append(button);
               form.append(input1);
               form.append(button);
-              panel.append(form);
-              panel.append(heading);
-              well.append(panel);
+              cardAction.append(form);
+              cardContent.append(heading);
+              cardStack.append(cardContent);
+              cardStack.append(cardAction);
+              card.append(cardStack);
+              well.append(card);
+            //   panel.append(heading);
+            //   well.append(panel);
               $("#panelSection").append(well);
           }
     })
@@ -101,8 +115,20 @@ $('.getNotes').on('click', function(){
     })
 })
 
+$(".deleteButton").on('click', function(){
+   
+    var delete_id = this.parentElement.getAttribute('data-id');
+    console.log(delete_id);
+    $.ajax({
+        method: "DELETE",
+        url: "/articles/" + delete_id
+    }).done(function(res){
+        console.log(res);
+    }).catch(function(err){     
+        console.log(err);
+    })
 
-
-
-
+    this.parentElement.parentElement.remove();
+})
+1
 

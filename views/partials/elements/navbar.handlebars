@@ -24,6 +24,8 @@
 </nav>
 -->
 
+
+
   <nav>
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">Article Scraper</a>
@@ -32,13 +34,20 @@
         <li>
           <form class="navbar-form navbar-left scrape" action="/api/scrape" method="POST">
             <input type="hidden" value="">
-            <button type="submit" class="btn btn-md btn-danger modal-trigger pulse"  href="#modal" id = "scrapeButton">Scrape New Artcles</button>
+            <button type="submit" class="btn btn-md btn-danger modal-trigger pulse"  data-target="modal" id = "scrapeButton">Scrape New Artcles</button>
         </form> 
       </li>
       </ul>
     </div>
   </nav>
 
-
-
-          
+<!-- Modal Structure -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of textfd;afsk;askdfl;maslfmdpmpmoeomfqpwmpowmepfmpmoef</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
