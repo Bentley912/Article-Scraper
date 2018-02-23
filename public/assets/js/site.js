@@ -29,32 +29,32 @@ function scrapeQuery(){
               var form = $("<form>");
               var panel = $("<div>");
               var heading = $("<p>")
-              var button = $("<button>");
               var input1 = $("<input>");
+              var input2 =$("<input>")
               well.addClass("col s12 m4 l4");
               card.addClass("card horizontal red lighten-3")
               cardStack.addClass("card-stacked");
               cardContent.addClass("card-content");
               cardAction.addClass("card-action");
+              form.addClass('articleSubmit')
               form.attr({
                             action:"/saved", 
                             method: "POST",
-                            name: "article"
+                            name: "article",
                         });
               input1.attr({
                 type:"hidden",
                 name: "title",
                 value:response[i].title
               });
-              button.addClass("btn btn-large waves-effect waves-light")
-              button.attr("type", "submit");
+              input2.addClass("btn btn-large waves-effect waves-light")
+              input2.attr("type", "submit");
               //ADD PREVENT DEFAULT FOR BUTTON CLICK 
-              button.html("Save Article");
+              input2.html("Save Article");
             //   console.log(headingText);
               heading.append( '<strong>TITLE: </strong>' + response[i].title);
-              heading.append(button);
               form.append(input1);
-              form.append(button);
+              form.append(input2);
               cardAction.append(form);
               cardContent.append(heading);
               cardStack.append(cardContent);
@@ -115,8 +115,7 @@ $('.getNotes').on('click', function(){
     })
 })
 
-$(".deleteButton").on('click', function(){
-   
+$(".deleteButton").on('click', function(){ 
     var delete_id = this.parentElement.getAttribute('data-id');
     console.log(delete_id);
     $.ajax({
@@ -130,5 +129,14 @@ $(".deleteButton").on('click', function(){
 
     this.parentElement.parentElement.remove();
 })
-1
 
+
+$(document).on('submit', '.articleSubmit', function (e) { 
+    e.preventDefault;
+    console.log('Button Submitted Fool');
+});
+
+
+//submit event handler on form 
+//input type equal submit for button 
+//when submitting form use event prevent default 
