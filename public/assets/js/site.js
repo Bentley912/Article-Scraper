@@ -47,7 +47,7 @@ function scrapeQuery(){
                 name: "title",
                 value:response[i].title
               });
-              input2.addClass("btn btn-large waves-effect waves-light")
+              input2.addClass("btn btn-large waves-effect waves-light buttonSubmit")
               input2.attr("type", "submit");
               //ADD PREVENT DEFAULT FOR BUTTON CLICK 
               input2.html("Save Article");
@@ -132,7 +132,7 @@ $(".deleteButton").on('click', function(){
 
 
 $(document).on('submit', '.articleSubmit', function (e) { 
-    e.preventDefault;
+    e.preventDefault();
     console.log('Button Submitted Fool');
 });
 
