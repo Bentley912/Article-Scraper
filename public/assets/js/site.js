@@ -3,6 +3,9 @@ $(document).ready(function(){
     $('.modal').modal();
   });
 
+  $('.noteButton').on("click", function(){
+    $('#modal1').modal('open');
+  })
 
 $(".scrape").on("click", function(event) {
       event.preventDefault();
@@ -11,6 +14,7 @@ $(".scrape").on("click", function(event) {
       $("#noneDiv").hide();
 })
 
+// THIS GETS SCRAPED DATA & CREATES PANELS AND CARDS FOR EACH INSTANCE IN DATA AND RENDERS TO PAGE
 function scrapeQuery(){
     //grab data from api/scrape   
     queryURL = "/api/scrape";
@@ -48,7 +52,7 @@ function scrapeQuery(){
                 value:response[i].title
               });
               input2.addClass("btn btn-large waves-effect waves-light buttonSubmit")
-              input2.attr("type", "submit");
+              input2.attr("type","submit");
               //ADD PREVENT DEFAULT FOR BUTTON CLICK 
               input2.html("Save Article");
             //   console.log(headingText);
@@ -68,9 +72,11 @@ function scrapeQuery(){
     })
 };
 
+//SAVES ARTICLE ID FOR POSTING/EDITING NOTES FOR EACH ARTICLE
 var articleId; //variable for article id 
-$(document).on('click', '#articlePanel', function(){
+$(document).on('click', '.articlePanel', function(){
     articleId = $(this).attr('data-id');//article id for each saved article for note
+    console.log(articleId);
     //console.log(articleId);
 })
 
@@ -92,13 +98,13 @@ $('#addNote').on('click', function(){
         }
     })
     // With that done
-    .done(function (data) {
+    .done(function () {
         // Log the response
-        console.log(data);
-    
+        $('#modal1').modal('close');
     });
 })
 
+//AJAX CALL TO GET NOTES FOR A SPECIFIC ARTICLE 
 $('.getNotes').on('click', function(){
     $.ajax({
         method: "GET",
@@ -109,12 +115,14 @@ $('.getNotes').on('click', function(){
         if (typeof data.note === "undefined"){
             console.log('the property is not available...'); // print into console
         }
-        console.log(data.note.title);
+        console.log(data);
     }).catch(function(err){
         console.log(err)
     })
 })
 
+
+//AJAX CALL TO DELETE ARTICLES
 $(".deleteButton").on('click', function(){ 
     var delete_id = this.parentElement.getAttribute('data-id');
     console.log(delete_id);
@@ -126,14 +134,28 @@ $(".deleteButton").on('click', function(){
     }).catch(function(err){     
         console.log(err);
     })
-
     this.parentElement.parentElement.remove();
 })
-
-
+//AJAX CALL TO SAVE ARTICLES
 $(document).on('submit', '.articleSubmit', function (e) { 
     e.preventDefault();
-    console.log('Button Submitted Fool');
+    articleTitle = ((this).childNodes[0].value);
+    var badge = $('<span>');
+    badge.addClass('new badge red');
+    badge.attr('data-badge-caption', 'Saved!');
+    $(this).append(badge);
+    
+    data ={
+        title: articleTitle
+    }
+    $.ajax({
+        method: "POST",
+        url: "/saved/", 
+        data: {
+            // Value taken from title input
+            title: data.title,
+        }
+    })
 });
 
 

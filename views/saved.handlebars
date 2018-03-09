@@ -4,23 +4,10 @@
         <h3>New York Times Edition</h3>
     </div>
 
-{{!-- {{#each contents}}
-<div class="panel panel-success" data-id={{this.id}} id ="articlePanel">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{this.title}}</h3>
-  </div>
-  <div class="panel-body">
-       <form class="pull-right" action="/note" method="POST">
-            <button type="submit" class="btn btn-md btn-danger">Delete From Saved</button>
-      </form>
-            <button type="submit" class="btn btn-md btn-info pull-right" id= "noteButton" data-toggle="modal" data-target="#noteModal">Make a Note </button>
-            <button type="button" class="btn btn-md btn-info pull-left getNotes" >See Notes </button>
-  </div>
-</div>
-{{/each}} --}}
+
 <div class="row">
   {{#each contents}}
-    <div class="col s12 m3 l4" data-id ={{this.id}} id="articlePanel">
+    <div class="col s12 m3 l4 articlePanel" data-id ={{this.id}}>
       {{!-- <h2 class="header">Saved Article</h2> --}}
       <div class="card horizontal red lighten-3 hoverable">
         <div class="card-stacked">
@@ -28,8 +15,8 @@
             <p>{{this.title}}</p>
           </div>
           <div class="card-action" data-id = {{this.id}}>
-              <a class="btn-floating btn-large waves-effect waves-light red pulse"><i class="material-icons">add</i></a>
-            <a class="waves-effect waves-light btn">See Notes</a>
+              <a class="btn-floating btn-large waves-effect waves-light red pulse noteButton" href="#modal1"><i class="material-icons">add</i></a>
+            <a class="waves-effect waves-light btn getNotes">See Notes</a>
             <a class="waves-effect waves-light btn deleteButton">Delete Article</a>
           </div>
         </div>
@@ -37,29 +24,27 @@
     </div>
   {{/each}}
 </div>
-<div class="modal" id="noteModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title" id="exampleModalLabel">Note </h1>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Note Title" aria-describedby="basic-addon1" id="noteTitle">
-        </div>
-        <div class="form-group">
-          <label for="comment">Body:</label>
-          <textarea class="form-control" rows="5" id="noteBody"></textarea>
-        </div>
-      </div>
-      <div class="modal-footer">
-          
-         <button type="button" class="btn btn-success" data-dismiss="modal" id="addNote">Save Note</button>
-        
+      <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="noteTitle" type="text" class="validate">
+                <label for="note_title">Note Title</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="noteBody" class="materialize-textarea"></textarea>
+                <label for="textarea1">NOTE</label>
+              </div>
+            </div>
+          </form>
       </div>
     </div>
-  </div>
+    <div class="modal-footer">
+      <a class="btn-floating btn-large waves-effect waves-light green pulse noteButton" id="addNote"><i class="material-icons">add</i></a>
+    </div>
 </div>
+

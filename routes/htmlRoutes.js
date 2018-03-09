@@ -93,7 +93,6 @@ router.get("/articles", function(req, res) {
     }
     else{
       res.render("saved", { contents: doc}) 
-      console
     }
   });
 });
@@ -115,12 +114,14 @@ router.get('/articles/:id', function(req, res) {
     .exec(function(err,doc){
         if (err){
             res.send(err)
+            console.log(err)
         }
         else{
-            res.send(doc)
+            res.render("notes", { contents: doc}) 
         }
     })
 });
+
 router.post("/articles/:id", function(req, res) {
 //need to find on with "_id: req.params.id"
 var newNote = new Note(req.body);
