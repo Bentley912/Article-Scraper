@@ -117,7 +117,7 @@ router.get('/articles/:id', function(req, res) {
             console.log(err)
         }
         else{
-            res.render("notes", { contents: doc}) 
+            res.send(doc) 
         }
     })
 });
