@@ -29,14 +29,24 @@
   <nav>
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">Article Scraper</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/articles">Saved</a>
+        <li><a href="/articles">Saved</a></li>
         <li>
           <form class="navbar-form navbar-left scrape" action="/api/scrape" method="POST">
             <input type="hidden" value="">
-            <button type="submit" class="btn btn-md btn-danger modal-trigger pulse"  data-target="modal" id = "scrapeButton">Scrape New Artcles</button>
-        </form> 
-      </li>
+            <button type="submit" class="btn waves-effect waves-light"  data-target="modal" id = "scrapeButton">Scrape New Artcles</button>
+          </form> 
+        </li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="/articles">Saved</a></li>
+        <li>
+          <form class="navbar-form navbar-left scrape" action="/api/scrape" method="POST">
+            <input type="hidden" value="">
+            <button type="submit" class="btn btn-md btn-danger modal-trigger pulse menu-button"  data-target="modal" id = "scrapeButton">Scrape New Artcles</button>
+          </form> 
+        </li>
       </ul>
     </div>
   </nav>

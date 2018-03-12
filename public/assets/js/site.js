@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
+    $(".button-collapse").sideNav();
   });
 
   $('.noteButton').on("click", function(){
@@ -23,7 +24,7 @@ function scrapeQuery(){
         .done(function(response) {
         //   console.log(queryURL);
         //   console.log(response);
-          for (var i =0; i <response.length; i++){
+          for (var i =1; i <response.length; i++){
               //loop through results and add panels for each response 
               var well = $("<div>");
               var card =$("<div>");
@@ -35,7 +36,7 @@ function scrapeQuery(){
               var heading = $("<p>")
               var input1 = $("<input>");
               var input2 =$("<input>")
-              well.addClass("col s12 m4 l4");
+              well.addClass("col s12 m12 l12");
               card.addClass("card horizontal red lighten-3")
               cardStack.addClass("card-stacked");
               cardContent.addClass("card-content");
@@ -56,7 +57,7 @@ function scrapeQuery(){
               //ADD PREVENT DEFAULT FOR BUTTON CLICK 
               input2.html("Save Article");
             //   console.log(headingText);
-              heading.append( '<strong>TITLE: </strong>' + response[i].title);
+              cardContent.append( '<strong>TITLE: </strong>' + response[i].title);
               form.append(input1);
               form.append(input2);
               cardAction.append(form);
@@ -99,7 +100,7 @@ $('#addNote').on('click', function(){
     })
     // With that done
     .done(function () {
-        // Log the response
+        // Close the Modal
         $('#modal1').modal('close');
     });
 })
@@ -164,7 +165,3 @@ $(document).on('submit', '.articleSubmit', function (e) {
     })
 });
 
-
-//submit event handler on form 
-//input type equal submit for button 
-//when submitting form use event prevent default 

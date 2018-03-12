@@ -19,3 +19,19 @@
 .spaced{
     margin: 4em;
 }
+
+.menu-button{
+    margin:25px;
+}
+
+@media screen and (max-width: 434px) {
+    .deleteButton {
+      margin-left:60px;
+    }
+  }
+
+  @media screen and (max-width: 1363px) {
+    .deleteButton {
+      margin-left:60px;
+    }
+  }
