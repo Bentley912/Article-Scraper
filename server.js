@@ -32,7 +32,15 @@ app.use("/", routes);
 app.listen(port);
 
 // Database configuration with mongooseß
-mongoose.connect("mongodb://localhost/articleScrape");
+
+var databaseUri = 'mongodb://localhost/articleScrape';
+
+if (process.env.MONGODB_URI){
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect(databaseUri);
+}
+
 var db = mongoose.connection;
 // Show any mongoose errors
 
