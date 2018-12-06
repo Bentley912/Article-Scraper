@@ -24,6 +24,12 @@
     margin:25px;
 }
 
+.note{
+    width: 33%;
+    height:33%;
+    background-color: white;
+}
+
 @media screen and (max-width: 434px) {
     .deleteButton {
       margin-left:60px;

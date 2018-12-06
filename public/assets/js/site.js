@@ -113,16 +113,19 @@ $('.getNotes').on('click', function(){
     }).done(function(data){
         //CHECK TO SEE IF NOTE EXISTS ON THE ARTICLE
         //IF NOTE DOESNT EXIST, LET THE USER KNOW
-        var noteDiv = $("[data-id=" + articleId + "]")
+
+        var noteDiv = $("[data-id=" + articleId + "]");
+
         if (typeof data.note === "undefined"){
-            console.log('the property is not available...'); // print into console
-            noteDiv[1].append("There are no Notes for this Article Yet")
+            console.log('the property is not available...');
+             // print into console
+            noteDiv[1].append("This article has no Notes");
+        }else{
+            console.log(data);
+            console.log(noteDiv[1]); 
+            noteDiv[1].append(data.note.title);
+            noteDiv[1].append(data.note.body);
         }
-        console.log(data);
-        var noteDiv = $("[data-id=" + articleId + "]")
-        console.log(noteDiv[1]); 
-        noteDiv[1].append(data.note.title);
-        noteDiv[1].append(data.note.body);
     }).catch(function(err){
         console.log(err)
     })

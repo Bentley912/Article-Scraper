@@ -17,13 +17,13 @@ router.get("/saved", function(req,res){
 router.post("/api/scrape", function(req,res){
     var result = [];
  
-    request("https://www.reddit.com/", function(error, response, html) {
+    request("https://www.nytimes.com/", function(error, response, html) {
     // Load the body of the HTML into cheerio
         var $ = cheerio.load(html);
         // Empty array to save our scraped data
         
         // With cheerio, find each h4-tag with the class "headline-link"
-        $(".entry").each(function(i, element) {
+        $(".css-6p6lnl").each(function(i, element) {
             // Save the text of the h4-tag as "title"
             var title = $(this).text();
             // Find the h4 tag's parent a-tag, and save it's href value as "link"
@@ -35,7 +35,7 @@ router.post("/api/scrape", function(req,res){
         });
         });
         // After the program scans each h4.headline-link, log the result  
-        // console.log(result);
+        console.log(result);
         res.json(result);      
     });
     
@@ -43,13 +43,13 @@ router.post("/api/scrape", function(req,res){
 
 router.get("/api/scrape", function(req,res){
     var result = [];
-    request("https://www.reddit.com/", function(error, response, html) {
+    request("https://www.nytimes.com/", function(error, response, html) {
     // Load the body of the HTML into cheerio
         var $ = cheerio.load(html);
         // Empty array to save our scraped data
         
         // With cheerio, find each h4-tag with the class "headline-link"
-        $(".entry").each(function(i, element) {
+        $('.css-6p6lnl').each(function(i, element) {
             // Save the text of the h4-tag as "title"
             var title = $(this).text();
             // Find the h4 tag's parent a-tag, and save it's href value as "link"
@@ -61,7 +61,7 @@ router.get("/api/scrape", function(req,res){
             });
         });
         // After the program scans each h4.headline-link, log the result  
-        // console.log(result);
+        console.log(result);
         res.json(result);      
     });   
 })
